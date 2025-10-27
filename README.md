@@ -119,6 +119,12 @@ The function automatically creates the table with schema detected from the Kayze
 - `fetch_timestamp`: ISO timestamp when the data was fetched
 - `id`: Campaign ID (used for upsert logic)
 
+### Performance Optimizations
+
+- **Clustering**: Table is clustered by `id` for optimal query performance
+- **Auto-schema**: Schema is automatically detected from Kayzen API response
+- **Upsert logic**: Efficiently updates existing campaigns and adds new ones
+
 ## Security
 
 - All sensitive data is stored in environment variables

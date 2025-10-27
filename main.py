@@ -76,11 +76,12 @@ def load_campaigns_to_bigquery(campaigns, project_id, dataset_id, table_id):
     try:
         table = client.get_table(table_ref)
     except Exception:
-        # Table doesn't exist, create it with auto-detected schema
+        # Table doesn't exist, create it with auto-detected schema and clustering
         job_config = bigquery.LoadJobConfig(
             source_format=bigquery.SourceFormat.JSON,
             autodetect=True,
-            write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+            write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
+            clustering_fields=["id"]  # Cluster by campaign ID for better performance
         )
         
         # Load first batch to create table
@@ -90,7 +91,7 @@ def load_campaigns_to_bigquery(campaigns, project_id, dataset_id, table_id):
             job_config=job_config
         )
         load_job.result()
-        print(f"Created table {dataset_id}.{table_id}")
+        print(f"Created table {dataset_id}.{table_id} with clustering on 'id'")
     
     # Add fetch_timestamp to each campaign
     current_timestamp = datetime.utcnow().isoformat()
