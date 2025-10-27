@@ -73,6 +73,7 @@ gcloud functions deploy kayzen-campaigns-fetcher \
   --allow-unauthenticated \
   --memory 512MB \
   --timeout 300s \
+  --region europe-west1 \
   --source . \
   --entry-point fetch_kayzen_campaigns \
   --set-env-vars KAYZEN_API_KEY=your-key,KAYZEN_API_SECRET=your-secret,...
@@ -85,7 +86,7 @@ Set up a Cloud Scheduler job to trigger the function daily:
 ```bash
 gcloud scheduler jobs create http kayzen-campaigns-daily \
   --schedule="0 9 * * *" \
-  --uri="https://us-central1-PROJECT_ID.cloudfunctions.net/kayzen-campaigns-fetcher" \
+  --uri="https://europe-west1-PROJECT_ID.cloudfunctions.net/kayzen-campaigns-fetcher" \
   --http-method=GET
 ```
 
