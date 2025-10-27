@@ -20,6 +20,7 @@ steps:
       - '.'
       - '--entry-point'
       - 'fetch_kayzen_campaigns'
+      - '--no-gen2'
       - '--set-env-vars'
       - 'KAYZEN_API_KEY=${_KAYZEN_API_KEY},KAYZEN_API_SECRET=${_KAYZEN_API_SECRET},KAYZEN_USERNAME=${_KAYZEN_USERNAME},KAYZEN_PASSWORD=${_KAYZEN_PASSWORD},GCP_PROJECT_ID=$PROJECT_ID,BIGQUERY_DATASET_ID=${_BIGQUERY_DATASET_ID},BIGQUERY_TABLE_ID=${_BIGQUERY_TABLE_ID}'
 
