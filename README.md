@@ -66,14 +66,15 @@ Required variables:
 #### Option B: Manual Deployment
 
 ```bash
-# Deploy to Cloud Functions
+# Deploy to Cloud Functions (2nd gen)
 gcloud functions deploy kayzen-campaigns-fetcher \
-  --runtime python39 \
+  --runtime python311 \
   --trigger-http \
   --allow-unauthenticated \
   --memory 512MB \
   --timeout 300s \
   --region europe-west1 \
+  --gen2 \
   --source . \
   --entry-point fetch_kayzen_campaigns \
   --set-env-vars KAYZEN_API_KEY=your-key,KAYZEN_API_SECRET=your-secret,...
