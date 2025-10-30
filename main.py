@@ -115,7 +115,7 @@ def load_campaigns_to_bigquery(campaigns, project_id, dataset_id, table_id):
     
     # Insert new records
     job_config = bigquery.LoadJobConfig(
-        source_format=bigquery.SourceFormat.JSON,
+        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
         write_disposition=bigquery.WriteDisposition.WRITE_APPEND
     )
     
