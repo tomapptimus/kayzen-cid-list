@@ -78,7 +78,7 @@ def load_campaigns_to_bigquery(campaigns, project_id, dataset_id, table_id):
     except Exception:
         # Table doesn't exist, create it with auto-detected schema and clustering
         job_config = bigquery.LoadJobConfig(
-            source_format=bigquery.SourceFormat.JSON,
+            source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
             autodetect=True,
             write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
             clustering_fields=["id"]  # Cluster by campaign ID for better performance
